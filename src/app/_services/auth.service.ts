@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
 // const AUTH_API = 'http://10.1.137.50:8760/user/v1/'
 
 // api gateway
-const AUTH_API = 'http://10.1.137.50:8080/auth/user/v1/';
+const AUTH_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/user/v1/';
+
 // for passing data for POST
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,9 +20,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthService {
-
   constructor(
     private http: HttpClient,
     private token: TokenStorageService,
@@ -36,17 +36,11 @@ export class AuthService {
       },
       httpOptions
     );
-
   }
 
   logout(): Observable<any> {
-
     return this.http.post(AUTH_API + 'logout', {
-
-      "refreshToken" : this.token.getRefreshToken()
-
-    })
-
+      refreshToken: this.token.getRefreshToken(),
+    });
   }
-
 }

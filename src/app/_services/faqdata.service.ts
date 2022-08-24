@@ -15,18 +15,23 @@ export class FAQDataService {
     ),
   };
 
-  private url_base = 'http://10.1.137.50:8767/getAll?size=100';
+  private url_base =
+    'http://faq-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/getAll?size=100';
 
   constructor(
     private httpClient: HttpClient,
     private token: TokenStorageService
   ) {}
 
-  private url_create = 'http://10.1.137.50:8767/create';
-  private url_delete = 'http://10.1.137.50:8767/delete/';
-  private url_update = 'http://10.1.137.50:8767/update/';
+  private url_create =
+    'http://faq-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/create';
+  private url_delete =
+    'http://faq-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/delete/';
+  private url_update =
+    'http://faq-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/update/';
 
-  private url_byid = 'http://10.1.137.50:8767/get/';
+  private url_byid =
+    'http://faq-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/get/';
 
   httpOptions_base = {
     headers: new HttpHeaders().set(

@@ -11,8 +11,10 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { Operator } from '../operator-home/operator';
 import Swal from 'sweetalert2';
 
-const GET_OPERATOR_BYID_API = 'http://10.1.137.50:8080/auth/user/v1/';
-const UPDATE_OPERATOR_API = 'http://10.1.137.50:8760/user/v1/update/';
+const GET_OPERATOR_BYID_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/user/v1/';
+const UPDATE_OPERATOR_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/user/v1/update/';
 
 @Component({
   selector: 'app-operator-edit',

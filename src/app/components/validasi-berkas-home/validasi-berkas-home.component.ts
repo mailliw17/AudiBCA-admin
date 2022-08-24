@@ -8,7 +8,8 @@ import { SpinnerService } from 'src/app/_services/spinner.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import Swal from 'sweetalert2';
 
-const GET_ALL_API = 'http://10.1.137.50:8761/approval/getAll';
+const GET_ALL_API =
+  'http://ktp-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/approval/getAll';
 
 @Component({
   selector: 'app-validasi-berkas-home',

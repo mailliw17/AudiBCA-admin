@@ -9,30 +9,32 @@ import { SpinnerService } from '../../_services/spinner.service';
 import Swal from 'sweetalert2';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const READ_OPERATOR_API = 'http://10.1.137.50:8760/admin/v1/getAll?role=operator'
-const DELETE_OPERATOR_API = 'http://10.1.137.50:8760/admin/v1/delete/'
-const GET_OPERATOR_BYID_API = 'http://10.1.137.50:8080/auth/user/v1/'
+const READ_OPERATOR_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/admin/v1/getAll?role=operator';
+const DELETE_OPERATOR_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/admin/v1/delete/';
+const GET_OPERATOR_BYID_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/user/v1/';
 
 @Component({
   selector: 'app-operator-home',
   templateUrl: './operator-home.component.html',
-  styleUrls: ['./operator-home.component.css']
+  styleUrls: ['./operator-home.component.css'],
 })
 export class OperatorHomeComponent implements OnInit {
-
   faEdit = faPencilAlt;
   faDelete = faTrash;
 
   // token for get anything data
   httpOptions_base = {
     headers: new HttpHeaders().set(
-      "Authorization",
+      'Authorization',
       `Bearer ${this.token.getToken()}`
-    )
-  }
+    ),
+  };
 
-  displayedColumns: string[] = [ 'nama', 'username', 'email', 'action'];
-  dataSource !: MatTableDataSource<any>;
+  displayedColumns: string[] = ['nama', 'username', 'email', 'action'];
+  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -42,11 +44,11 @@ export class OperatorHomeComponent implements OnInit {
     private router: Router,
     private token: TokenStorageService,
     private spiner: SpinnerService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.spiner.isLoading = true
-    this.getAllData()
+    this.spiner.isLoading = true;
+    this.getAllData();
   }
 
   applyFilter(event: Event) {
@@ -59,23 +61,23 @@ export class OperatorHomeComponent implements OnInit {
   }
 
   getAllData() {
-    this.http.get<any>(READ_OPERATOR_API, this.httpOptions_base)
-      .subscribe(isi => {
-        this.dataSource = new MatTableDataSource(isi.content)
-        this.dataSource.paginator = this.paginator
-        this.dataSource.sort = this.sort
-        this.spiner.isLoading = false
+    this.http.get<any>(READ_OPERATOR_API, this.httpOptions_base).subscribe(
+      (isi) => {
+        this.dataSource = new MatTableDataSource(isi.content);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.spiner.isLoading = false;
       },
-        err => {
-          this.spiner.isLoading = false
-          Swal.fire({
-            title: 'Error',
-            text: err.error.message,
-            icon: 'error'
-          })
-          console.log(err)
-        }
-      )
+      (err) => {
+        this.spiner.isLoading = false;
+        Swal.fire({
+          title: 'Error',
+          text: err.error.message,
+          icon: 'error',
+        });
+        console.log(err);
+      }
+    );
   }
 
   deleteOperator(id: string) {
@@ -86,30 +88,27 @@ export class OperatorHomeComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.value) {
-        this.http.delete<any>(DELETE_OPERATOR_API + id, this.httpOptions_base)
-      .subscribe(isi => {
-
-        this.getAllData()
-      },
-        err => {
-          Swal.fire({
-            title: 'Error',
-            text: err.error.message,
-            icon: 'error'
-          })
-          console.log(err)
-        }
-      )
+        this.http
+          .delete<any>(DELETE_OPERATOR_API + id, this.httpOptions_base)
+          .subscribe(
+            (isi) => {
+              this.getAllData();
+            },
+            (err) => {
+              Swal.fire({
+                title: 'Error',
+                text: err.error.message,
+                icon: 'error',
+              });
+              console.log(err);
+            }
+          );
       } else {
-        Swal.fire(
-          'Cancelled',
-          'Your operator is safe :)',
-          'error'
-        )
+        Swal.fire('Cancelled', 'Your operator is safe :)', 'error');
       }
-    })
+    });
   }
 }

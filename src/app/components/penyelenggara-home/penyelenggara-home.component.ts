@@ -11,45 +11,45 @@ import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 // created by jason
 export interface Organizer {
-  id: string,
-  name: string,
-  industry: string,
-  address: string,
-  phoneNum: string,
-  fax: string,
-  date_created: string,
-  created_by: string,
-  date_updated: string,
-  updated_by: string,
-  date_deleted: string,
-  deleted_by: string,
-  is_active: boolean
-
+  id: string;
+  name: string;
+  industry: string;
+  address: string;
+  phoneNum: string;
+  fax: string;
+  date_created: string;
+  created_by: string;
+  date_updated: string;
+  updated_by: string;
+  date_deleted: string;
+  deleted_by: string;
+  is_active: boolean;
 }
 
-const READ_ORGANIZER_API = 'http://10.1.137.50:8762/getAll'
-const DELETE_ORGANIZER_API = 'http://10.1.137.50:8762/delete/'
+const READ_ORGANIZER_API =
+  'http://organizer-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/getAll';
+const DELETE_ORGANIZER_API =
+  'http://organizer-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/delete/';
 
 @Component({
   selector: 'app-penyelenggara-home',
   templateUrl: './penyelenggara-home.component.html',
-  styleUrls: ['./penyelenggara-home.component.css']
+  styleUrls: ['./penyelenggara-home.component.css'],
 })
 export class PenyelenggaraHomeComponent implements OnInit {
-
   faEdit = faPencilAlt;
   faDelete = faTrash;
 
   // token for get anything data
   httpOptions_base = {
     headers: new HttpHeaders().set(
-      "Authorization",
+      'Authorization',
       `Bearer ${this.token.getToken()}`
-    )
-  }
+    ),
+  };
 
-  displayedColumns: string[] = [ 'name', 'address', 'phoneNum', 'fax', 'action'];
-  dataSource !: MatTableDataSource<any>;
+  displayedColumns: string[] = ['name', 'address', 'phoneNum', 'fax', 'action'];
+  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -60,11 +60,11 @@ export class PenyelenggaraHomeComponent implements OnInit {
     private router: Router,
     private token: TokenStorageService,
     private spinner: SpinnerService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.spinner.isLoading = true
-    this.getAllData()
+    this.spinner.isLoading = true;
+    this.getAllData();
   }
 
   applyFilter(event: Event) {
@@ -77,22 +77,22 @@ export class PenyelenggaraHomeComponent implements OnInit {
   }
 
   getAllData() {
-    this.http.get<any>(READ_ORGANIZER_API, this.httpOptions_base)
-      .subscribe(isi => {
-        this.dataSource = new MatTableDataSource(isi.content)
-        this.dataSource.paginator = this.paginator
-        this.dataSource.sort = this.sort
-        this.spinner.isLoading = false
+    this.http.get<any>(READ_ORGANIZER_API, this.httpOptions_base).subscribe(
+      (isi) => {
+        this.dataSource = new MatTableDataSource(isi.content);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.spinner.isLoading = false;
       },
-        err => {
-          this.spinner.isLoading = false
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.error.message,
-          })
-        }
-      )
+      (err) => {
+        this.spinner.isLoading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.error.message,
+        });
+      }
+    );
   }
 
   deleteOrganizer(id: string) {
@@ -103,30 +103,26 @@ export class PenyelenggaraHomeComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.value) {
-        this.http.delete<any>(DELETE_ORGANIZER_API + id, this.httpOptions_base)
-        .subscribe(isi => {
-          this.getAllData()
-        },
-          err => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: err.error.message,
-            })
-          }
-        )
+        this.http
+          .delete<any>(DELETE_ORGANIZER_API + id, this.httpOptions_base)
+          .subscribe(
+            (isi) => {
+              this.getAllData();
+            },
+            (err) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.error.message,
+              });
+            }
+          );
       } else {
-        Swal.fire(
-          'Cancelled',
-          'Your seller file is safe :)',
-          'error'
-        )
+        Swal.fire('Cancelled', 'Your seller file is safe :)', 'error');
       }
-    })
-
+    });
   }
-
 }

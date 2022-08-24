@@ -8,9 +8,12 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { SpinnerService } from '../../_services/spinner.service';
 import Swal from 'sweetalert2';
 
-const READ_API = 'http://10.1.137.50:8760/admin/v1/getAll?role=seller';
-const DELETE_API = 'http://10.1.137.50:8760/admin/v1/delete/';
-const GET_BYID_API = 'http://10.1.137.50:8080/auth/user/v1/';
+const READ_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/admin/v1/getAll?role=seller';
+const DELETE_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/admin/v1/delete/';
+const GET_BYID_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/user/v1/';
 
 @Component({
   selector: 'app-akun-penjual-home',

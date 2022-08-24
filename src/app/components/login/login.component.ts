@@ -1,6 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -9,7 +14,8 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { User } from '../sidebar/user';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import Swal from 'sweetalert2';
-const PROFILE_API = 'http://10.1.137.50:8760/user/v1/';
+const PROFILE_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/user/v1/';
 
 @Component({
   selector: 'app-login',
@@ -24,13 +30,13 @@ export class LoginComponent implements OnInit {
   userData: any;
   currentUser: any;
 
-   // token for get anything data
-   httpOptions_base = {
+  // token for get anything data
+  httpOptions_base = {
     headers: new HttpHeaders().set(
       'Authorization',
       `Bearer ${this.tokenStorage.getToken()}`
-      ),
-    };
+    ),
+  };
 
   constructor(
     private authService: AuthService,
@@ -60,7 +66,7 @@ export class LoginComponent implements OnInit {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
-    )
+    );
   }
 
   reloadPage(): void {
@@ -87,16 +93,15 @@ export class LoginComponent implements OnInit {
             title: 'Oops...',
             text: 'Anda tidak memiliki akses!',
             icon: 'error',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
           }).then(() => {
             this.reloadPage();
-          })
+          });
         }
       },
       (err) => {
-        console.log('Error when routing');
+        console.log(err);
       }
     );
   }
-
 }

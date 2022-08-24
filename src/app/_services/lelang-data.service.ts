@@ -25,22 +25,32 @@ export class LelangDataService {
     ),
   };
   //private url_base="http://10.1.137.50:8080/auction-object/getAll";
-  private url_base = 'http://10.1.137.50:8766/getAll?size=100';
-  private url_base_admin = 'http://10.1.137.50:8766/getAllAdmin?size=100';
+  private url_base =
+    'http://auction-object-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/getAll?size=100';
+  private url_base_admin =
+    'http://auction-object-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/getAllAdmin?size=100';
 
   constructor(
     private httpClient: HttpClient,
     private token: TokenStorageService
   ) {}
 
-  private url_bought = 'http://10.1.137.50:8766/buy/';
-  private url_org = 'http://10.1.137.50:8762/getAll';
-  private url_branchbysel = 'http://10.1.137.50:8764/getAll/seller/';
-  private url_create = 'http://10.1.137.50:8766/create';
-  private url_delete = 'http://10.1.137.50:8766/delete/';
-  private url_update = 'http://10.1.137.50:8766/update/';
-  private url_seller = 'http://10.1.137.50:8763/getAll';
-  private url_byid = 'http://10.1.137.50:8766/get/';
+  private url_bought =
+    'http://auction-object-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/buy/';
+  private url_org =
+    'http://organizer-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/getAll';
+  private url_branchbysel =
+    'http://branch-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/getAll/seller/';
+  private url_create =
+    'http://auction-object-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/create';
+  private url_delete =
+    'http://auction-object-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/delete/';
+  private url_update =
+    'http://auction-object-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/update/';
+  private url_seller =
+    'http://seller-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/getAll';
+  private url_byid =
+    'http://auction-object-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/get/';
   lel_list: Lelang[] = [];
   httpOptions_base = {
     headers: new HttpHeaders().set(

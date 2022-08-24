@@ -16,18 +16,23 @@ export class PenjualDataService {
     ),
   };
 
-  private url_base = 'http://10.1.137.50:8763/getAll';
+  private url_base =
+    'http://seller-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/getAll';
 
   constructor(
     private httpClient: HttpClient,
     private token: TokenStorageService
   ) {}
 
-  private url_create = 'http://10.1.137.50:8763/create';
-  private url_delete = 'http://10.1.137.50:8763/delete/';
-  private url_update = 'http://10.1.137.50:8763/update/';
+  private url_create =
+    'http://seller-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/create';
+  private url_delete =
+    'http://seller-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/delete/';
+  private url_update =
+    'http://seller-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/update/';
 
-  private url_byid = 'http://10.1.137.50:8763/get/';
+  private url_byid =
+    'http://seller-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/get/';
 
   httpOptions_base = {
     headers: new HttpHeaders().set(

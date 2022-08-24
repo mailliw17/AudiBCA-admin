@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import Swal from 'sweetalert2';
 
-const CREATE_API = 'http://10.1.137.50:8760/admin/v1/createSeller';
+const CREATE_API =
+  'http://user-service-website-lelang-bca-dev.apps.ocpdev.dti.co.id/admin/v1/createSeller';
 
 @Component({
   selector: 'app-akun-penjual-tambah',

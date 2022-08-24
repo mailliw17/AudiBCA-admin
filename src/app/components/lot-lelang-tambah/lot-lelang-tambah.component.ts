@@ -36,7 +36,6 @@ function validatedate(c: FormControl) {
   styleUrls: ['./lot-lelang-tambah.component.css'],
 })
 export class LotLelangTambahComponent implements OnInit {
-
   validateall(form: FormGroup) {
     var a: any = this.Leladd.controls['leljoinenddate']?.value; //waktu selesai lelang
     var b: any = this.Leladd.controls['lelbidstart']?.value; //waktu mulai lelang
@@ -60,8 +59,15 @@ export class LotLelangTambahComponent implements OnInit {
         };
   }
 
-  options = { prefix: 'Rp. ' ,thousands: '.', decimal: ',', allowZero: true,
-  inputMode: CurrencyMaskInputMode.FINANCIAL, nullable: true, precision: 0 };
+  options = {
+    prefix: 'Rp. ',
+    thousands: '.',
+    decimal: ',',
+    allowZero: true,
+    inputMode: CurrencyMaskInputMode.FINANCIAL,
+    nullable: true,
+    precision: 0,
+  };
   progress: number = 0;
   images: string[] = [];
   tempimg: any[] = [];
@@ -215,7 +221,7 @@ export class LotLelangTambahComponent implements OnInit {
       var z = new Date(newlel.collateralExpire);
       newlel.collateralExpire = z.setSeconds(z.getSeconds()).toString();
 
-      console.log(newlel);
+      // console.log(newlel);
       this.lelserv
         .AddLelang(newlel, this.tempimg, this.attachment)
         .subscribe((lel) => {
