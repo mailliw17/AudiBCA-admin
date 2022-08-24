@@ -1,6 +1,6 @@
-# Auction Digital - BCA
+# Auction Digital - BCA - Admin
 
-## By audiBCA - BIT19
+## By BIT19
 
 > Hope this way can make our integration come easier dude
 
