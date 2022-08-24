@@ -1,0 +1,98 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h1>Tambah Data Penjual</h1>
+                        </div>
+                        <div class="container">
+                            <form  [formGroup]="Selleradd" novalidate (ngSubmit)="add(sellerform)" #sellerform="ngForm">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama </label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="selname"
+                                        autocomplete="off" #selname>
+                                </div>
+                                <div *ngIf="Selleradd.controls['selname'].invalid && Selleradd.controls['selname'].touched" class="alert alert-danger">
+                                    <div *ngIf="Selleradd.controls['selname'].errors?.required">
+                                   Seller Name is required.
+                                   </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Alamat </label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="seladdr"
+                                        autocomplete="off" #seladdr>
+                                </div>
+                                <div *ngIf="Selleradd.controls['seladdr'].invalid && Selleradd.controls['seladdr'].touched" class="alert alert-danger">
+                                    <div *ngIf="Selleradd.controls['seladdr'].errors?.required">
+                                   Seller Address is required.
+                                   </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Jenis Industri </label>
+                                    <select class="form-control" id="exampleFormControlSelect1" #selindus formControlName="selindus">
+                                        <option value="" selected disabled>--SILAHKAN PILIH--</option>
+                                        <option>Perbankan</option>
+                                        <option>Non Perbankan</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="Selleradd.controls['selindus'].invalid && Selleradd.controls['selindus'].touched" class="alert alert-danger">
+                                    <div *ngIf="Selleradd.controls['selindus'].errors?.required">
+                                   Seller Industry is required.
+                                   </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Nomor Telepon</label>
+                                            <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="selphone"
+                                                autocomplete="off" #selphone>
+                                        </div>
+                                        <div *ngIf="Selleradd.controls['selphone'].invalid && Selleradd.controls['selphone'].touched" class="alert alert-danger">
+                                            <div *ngIf="Selleradd.controls['selphone'].errors?.required">
+                                           Seller Phone Number is required.
+                                           </div>
+                                           <div *ngIf="Selleradd.controls['selphone'].errors?.['pattern'] || Selleradd.controls['selphone'].errors?.['minlength'] || Selleradd.controls['selphone'].errors?.['maxlength']">
+                                            Seller Phone Number must be valid Phone number value.
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">Nomor Fax</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="selfax"
+                                                    autocomplete="off" #selfax>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="Selleradd.controls['selfax'].invalid && Selleradd.controls['selfax'].touched" class="alert alert-danger">
+                                            <div *ngIf="Selleradd.controls['selfax'].errors?.required">
+                                           Seller Fax is required.  
+                                           </div>
+                                           <div *ngIf="Selleradd.controls['selfax'].errors?.['pattern'] || Selleradd.controls['selfax'].errors?.['minlength'] || Selleradd.controls['selfax'].errors?.['maxlength']">
+                                            Seller Fax must be valid Fax value.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary btn-sm w-100"
+                                    >Simpan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

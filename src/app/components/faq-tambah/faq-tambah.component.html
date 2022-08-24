@@ -1,0 +1,76 @@
+<body class="g-sidenav-show bg-gray-100">
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  <aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+    id="sidenav-main"
+  >
+    <app-sidebar></app-sidebar>
+  </aside>
+  <main class="main-content position-relative border-radius-lg">
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h1>Tambah FAQ</h1>
+            </div>
+            <div class="container">
+              <form
+                [formGroup]="FAQadd"
+                novalidate
+                (ngSubmit)="add(faqform)"
+                #faqform="ngForm"
+              >
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Question</label>
+                  <input
+                    type="text"
+                    formControlName="faqq"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    #faqq
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    FAQadd.controls['faqq'].invalid &&
+                    FAQadd.controls['faqq'].touched
+                  "
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="FAQadd.controls['faqq'].errors?.requ8ired">
+                    FAQ Question is required.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Answer</label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="7"
+                    formControlName="faqa"
+                    #faqa
+                  ></textarea>
+                </div>
+                <div
+                  *ngIf="
+                    FAQadd.controls['faqa'].invalid &&
+                    FAQadd.controls['faqa'].touched
+                  "
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="FAQadd.controls['faqa'].errors?.required">
+                    FAQ Answer is required.
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm w-100">
+                  Tambah
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>

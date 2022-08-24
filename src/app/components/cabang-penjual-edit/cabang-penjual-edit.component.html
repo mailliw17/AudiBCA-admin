@@ -1,0 +1,127 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h1>Edit Data Cabang Penjual {{curbranch.name}}</h1>
+                        </div>
+                        <div class="container">
+                            <form [formGroup]="Branchedit" novalidate (ngSubmit)="updateBranch(branchform)" #branchform="ngForm">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama </label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        autocomplete="off" [(ngModel)]="curbranch.name" name="branchname" #branchname formControlName="branchname">
+                                </div>
+                                <div *ngIf="Branchedit.controls['branchname'].invalid && Branchedit.controls['branchname'].touched" class="alert alert-danger">
+                                    <div *ngIf="Branchedit.controls['branchname'].errors?.required">
+                                   Branch name is required.
+                                   </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Alamat </label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        autocomplete="off" [(ngModel)]="curbranch.address" name="branchnaddr" formControlName="branchaddr"
+                                        #branchaddr>
+                                </div>
+                                <div *ngIf="Branchedit.controls['branchaddr'].invalid && Branchedit.controls['branchaddr'].touched" class="alert alert-danger">
+                                    <div *ngIf="Branchedit.controls['branchaddr'].errors?.required">
+                                   Branch address is required.
+                                   </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Inisial</label>
+                                            <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="branchinitial"
+                                                autocomplete="off" [(ngModel)]="curbranch.initial" name="branchinitial"
+                                                #branchinitial>
+                                        </div>
+                                        <div *ngIf="Branchedit.controls['branchinitial'].invalid && Branchedit.controls['branchinitial'].touched" class="alert alert-danger">
+                                            <div *ngIf="Branchedit.controls['branchinitial'].errors?.required">
+                                                Branch Initial is required.
+                                           </div>
+                                           <div *ngIf="Branchedit.controls['branchinitial'].errors?.['minlength'] || Branchedit.controls['branchinitial'].errors?.['maxlength']">
+                                                Branch Initial should be 3 characters long.
+                                            </div>
+                                            <div *ngIf="Branchedit.controls['branchinitial'].errors?.['pattern'] ">
+                                                Branch Initial should be in Capital Letters.
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">Penjual</label>
+                                                <select class="form-control" id="exampleFormControlSelect1" formControlName="branchseller"
+                                                    #branchseller>
+                                                    <option selected disabled (ngModel)="seller_array" name="selleropt" value="{{curseller.id}}">
+                                                        {{curseller.name}}</option>
+                                                    <option *ngFor="let seller of seller_array" [ngValue]="seller"
+                                                        label="{{seller.name}}">{{seller.id}}</option>
+                                                </select>
+                                            </div>
+                                            <div *ngIf="Branchedit.controls['branchseller'].invalid && Branchedit.controls['branchseller'].touched" class="alert alert-danger">
+                                                <div *ngIf="Branchedit.controls['branchseller'].errors?.required">
+                                               Branch seller is required.
+                                               </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Provinsi</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" #branchprovince formControlName="branchprovince">
+                                                <option  selected disabled (ngModel)="prov_array"
+                                                    name="provopt">{{curbranch.province}}</option>
+                                                <option *ngFor="let prov of prov_array" [ngValue]="prov">{{prov.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div *ngIf="Branchedit.controls['branchprovince'].invalid && Branchedit.controls['branchprovince'].touched" class="alert alert-danger">
+                                            <div *ngIf="Branchedit.controls['branchprovince'].errors?.required">
+                                           Branch province is required.
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">Tipe</label>
+                                                <select class="form-control" id="exampleFormControlSelect1"
+                                                    [(ngModel)]="curbranch.type" name="branchtype" #branchtype formControlName="branchtype">
+                                                    <option value="" selected disabled>--SILAHKAN PILIH--</option>
+                                                    <option>KCU</option>
+                                                    <option>KK</option>
+                                                </select>
+                                            </div>
+                                            <div *ngIf="Branchedit.controls['branchtype'].invalid && Branchedit.controls['branchtype'].touched" class="alert alert-danger">
+                                                <div *ngIf="Branchedit.controls['branchtype'].errors?.required">
+                                               Branch Type is required.
+                                               </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-sm w-100"
+                                    >Simpan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

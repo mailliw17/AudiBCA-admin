@@ -1,0 +1,522 @@
+<body class="g-sidenav-show bg-gray-100">
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  <aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+    id="sidenav-main"
+  >
+    <app-sidebar></app-sidebar>
+  </aside>
+  <main class="main-content position-relative border-radius-lg">
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h1>Edit Lot Lelang</h1>
+            </div>
+            <div class="container">
+              <form
+                [formGroup]="Leledit"
+                novalidate
+                (ngSubmit)="update(lelform)"
+                #lelform="ngForm"
+              >
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Nama Lot Lelang</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    formControlName="lelname"
+                    [(ngModel)]="lelang.name"
+                    name="lelname"
+                    #lelname
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    Leledit.controls['lelname'].invalid &&
+                    Leledit.controls['lelname'].touched
+                  "
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="Leledit.controls['lelname'].errors?.required">
+                    Lelang Name is required.
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Nilai Limit</label>
+                      <input
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        formControlName="lelinitialprice"
+                        [(ngModel)]="lelang.initialPrice"
+                        name="lelinitialprice"
+                        #lelinitialprice
+                        currencyMask
+                        [options]="options"
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['lelinitialprice'].invalid &&
+                        Leledit.controls['lelinitialprice'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div
+                        *ngIf="
+                          Leledit.controls['lelinitialprice'].errors?.required
+                        "
+                      >
+                        Lelang Nilai Limit is required.
+                      </div>
+                      <div
+                        *ngIf="Leledit.controls['lelinitialprice'].errors?.['pattern']"
+                      >
+                        Lelang Nilai Limit must be a valid value.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1"
+                        >Cara Penawaran</label
+                      >
+                      <select
+                        class="form-control"
+                        [(ngModel)]="lelang.bidMethod"
+                        name="bidme"
+                        formControlName="lelbidtype"
+                        id="exampleFormControlSelect1"
+                        #lelbidtype
+                      >
+                        <option selected disabled>
+                          {{ lelang.bidMethod }}
+                        </option>
+                        <option>Open Bidding</option>
+                        <option>Closed Bidding</option>
+                      </select>
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['lelbidtype'].invalid &&
+                        Leledit.controls['lelbidtype'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div
+                        *ngIf="Leledit.controls['lelbidtype'].errors?.required"
+                      >
+                        Lelang Bid Type is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1"
+                        >Nilai Jaminan</label
+                      >
+                      <input
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        formControlName="lelcolaqty"
+                        [(ngModel)]="lelang.collateralQuantity"
+                        name="colaqty"
+                        #lelcolaqty
+                        currencyMask
+                        [options]="options"
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['lelinitialprice'].invalid &&
+                        Leledit.controls['lelinitialprice'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div
+                        *ngIf="
+                          Leledit.controls['lelinitialprice'].errors?.required
+                        "
+                      >
+                        Lelang Nilai Limit is required.
+                      </div>
+                      <div
+                        *ngIf="Leledit.controls['lelinitialprice'].errors?.['pattern']"
+                      >
+                        Lelang Nilai Limit must be a valid value.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label
+                        for="example-datetime-local-input"
+                        class="form-control-label"
+                        >Batas Akhir Jaminan</label
+                      >
+                      <input
+                        class="form-control"
+                        type="datetime-local"
+                        id="example-datetime-local-input"
+                        [(ngModel)]="lelang.bidExpire"
+                        formControlName="lelenddate"
+                        name="bidexp"
+                        #lelenddate
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['lelenddate'].invalid &&
+                        Leledit.controls['lelenddate'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div
+                        *ngIf="Leledit.controls['lelenddate'].errors?.required"
+                      >
+                        Lelang Batas Akhir Jaminan is required.
+                      </div>
+                      <div
+                        *ngIf="
+                          Leledit.controls['lelenddate'].errors?.validateall
+                        "
+                      >
+                        Lelang Batas Akhir Jaminan must be before Waktu Mulai
+                        Lelang dan Waktu Selesai Lelang.
+                      </div>
+                      <div
+                        *ngIf="
+                          Leledit.controls['lelenddate'].errors?.validatedate
+                        "
+                      >
+                        Lelang Batas Akhir Jaminan Lelang must be after current
+                        time.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label
+                        for="example-datetime-local-input"
+                        class="form-control-label"
+                        >Waktu Mulai Lelang</label
+                      >
+                      <input
+                        class="form-control"
+                        type="datetime-local"
+                        id="example-datetime-local-input"
+                        [(ngModel)]="lelang.bidStart"
+                        formControlName="lelbidstart"
+                        name="bidStart"
+                        #bidStart
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['lelbidstart'].invalid &&
+                        Leledit.controls['lelbidstart'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div
+                        *ngIf="Leledit.controls['lelbidstart'].errors?.required"
+                      >
+                        Lelang Waktu Mulai Lelang is required.
+                      </div>
+                      <div
+                        *ngIf="
+                          Leledit.controls['lelbidstart'].errors?.validateall
+                        "
+                      >
+                        Lelang Waktu Mulai Lelang must be before Waktu Selesai
+                        Lelang dan after Batas Akhir Jaminan.
+                      </div>
+                      <div
+                        *ngIf="
+                          Leledit.controls['lelbidstart'].errors?.validatedate
+                        "
+                      >
+                        Lelang Waktu Mulai Lelang must be after current time.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label
+                        for="example-date-input"
+                        class="form-control-label"
+                      >
+                        Waktu Selesai Lelang</label
+                      >
+                      <input
+                        class="form-control"
+                        type="datetime-local"
+                        id="example-date-input"
+                        formControlName="leljoinenddate"
+                        [(ngModel)]="lelang.collateralExpire"
+                        name="leljoinenddate"
+                        #leljoinenddate
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['leljoinenddate'].invalid &&
+                        Leledit.controls['leljoinenddate'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div
+                        *ngIf="
+                          Leledit.controls['leljoinenddate'].errors?.required
+                        "
+                      >
+                        Waktu Selesai Lelang is required.
+                      </div>
+                      <div
+                        *ngIf="
+                          Leledit.controls['leljoinenddate'].errors
+                            ?.validatedate
+                        "
+                      >
+                        Lelang Waktu Selesai Lelang must be after current time.
+                      </div>
+                      <div
+                        *ngIf="
+                          Leledit.controls['leljoinenddate'].errors?.validateall
+                        "
+                      >
+                        Lelang Waktu Selesai Lelang must be after Waktu Mulai
+                        Lelang dan Batas Akhir Jaminan.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Uraian</label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="4"
+                    formControlName="desc"
+                    [(ngModel)]="lelang.description"
+                    name="desc"
+                    #desc
+                  ></textarea>
+                </div>
+                <div
+                  *ngIf="
+                    Leledit.controls['desc'].invalid &&
+                    Leledit.controls['desc'].touched
+                  "
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="Leledit.controls['desc'].errors?.required">
+                    Lelang Uraian is required.
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1"
+                        >Penyelenggara</label
+                      >
+                      <select
+                        class="form-control"
+                        #lelorg
+                        name="orgopt"
+                        formControlName="lelorg"
+                      >
+                        <option
+                          selected
+                          disabled
+                          label="{{ lelang.organizer.name }}"
+                        >
+                          {{ lelang.organizer.id }}
+                        </option>
+                        <option
+                          (ngModel)="(org_array)"
+                          *ngFor="let org of org_array"
+                          [ngValue]="org"
+                          label="{{ org.name }}"
+                        >
+                          {{ org.id }}
+                        </option>
+                      </select>
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['lelorg'].invalid &&
+                        Leledit.controls['lelorg'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="Leledit.controls['lelorg'].errors?.required">
+                        Lelang Organizer is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Penjual</label>
+                      <select
+                        class="form-control"
+                        name="selleropt"
+                        #lelseller
+                        (change)="updateBranch()"
+                        formControlName="lelseller"
+                      >
+                        <option
+                          selected
+                          disabled
+                          (ngModel)="(seller_array)"
+                          name="selleropt"
+                          label="{{ lelang.seller.name }}"
+                        >
+                          {{ lelang.seller.id }}
+                        </option>
+                        <option
+                          *ngFor="let seller of seller_array"
+                          [ngValue]="seller"
+                          label="{{ seller.name }}"
+                        >
+                          {{ seller.id }}
+                        </option>
+                      </select>
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['lelseller'].invalid &&
+                        Leledit.controls['lelseller'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div
+                        *ngIf="Leledit.controls['lelseller'].errors?.required"
+                      >
+                        Lelang Penjual is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1"
+                        >Cabang Penjual</label
+                      >
+                      <select
+                        class="form-control"
+                        name="lelbranch"
+                        #lelbranch
+                        formControlName="lelbranch"
+                      >
+                        <option selected disabled label="{{ tempbranch.name }}">
+                          {{ tempbranch.id }}
+                        </option>
+                        <option
+                          (ngModel)="(branch_array)"
+                          *ngFor="let branch of branch_array"
+                          [ngValue]="branch"
+                          label="{{ branch.name }}"
+                        >
+                          {{ branch.id }}
+                        </option>
+                      </select>
+                    </div>
+                    <div
+                      *ngIf="
+                        Leledit.controls['lelbranch'].invalid &&
+                        Leledit.controls['lelbranch'].touched
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div
+                        *ngIf="Leledit.controls['lelbranch'].errors?.required"
+                      >
+                        Lelang Branch is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label"
+                    >Lampiran</label
+                  >
+                  <input
+                    class="form-control"
+                    type="file"
+                    accept="application/pdf"
+                    id="example-text-input"
+                    formControlName="lelattachment"
+                    (change)="onAttachmentChange($event)"
+                  />
+                </div>
+                <span class="text-xs">
+                  <a
+                    class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"
+                    [href]="displayattachment"
+                    target="_blank"
+                  >
+                    <mat-icon>picture_as_pdf</mat-icon> Lampiran.pdf
+                  </a></span
+                >
+
+                <div class="form-group">
+                  <label for="file">Gambar (Max 1 MB/Gambar)</label>
+                  <input
+                    formControlName="imginp"
+                    id="file"
+                    type="file"
+                    class="form-control"
+                    multiple=""
+                    accept="image/*"
+                    (change)="onFileChange($event)"
+                  />
+                </div>
+
+                <div>
+                  <img
+                    *ngFor="let url of images"
+                    [src]="url"
+                    height="150"
+                    width="200px"
+                    style="margin: 3px"
+                  />
+                  <br />
+                  <button
+                    *ngFor="
+                      let url of images;
+                      let i = index;
+                      let first = first;
+                      let last = last
+                    "
+                    type="button"
+                    class="btn m-2 btn-danger w-15"
+                    (click)="imagesdeleter(i, last, first, images)"
+                  >
+                    Delete
+                  </button>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-sm w-100">
+                  Simpan
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>

@@ -1,0 +1,95 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-6 d-flex align-items-center">
+                                    <h1 class="mb-0">Data Lot Lelang</h1>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <button class="btn btn-outline-success btn-sm m-1"
+                                        routerLink="/lot-lelang/tambah">Tambah</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Filter</mat-label>
+                                <input matInput (keyup)="applyFilter($event)" placeholder="Rumah dan tanah"
+                                    autocomplete="off" #input>
+                                <mat-icon matSuffix>search</mat-icon>
+                            </mat-form-field>
+
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                                <ng-container matColumnDef="id">
+                                    <th mat-header-cell *matHeaderCellDef> Kode Lot Lelang </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.lotCode}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef> Nama </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="organizerName">
+                                    <th mat-header-cell *matHeaderCellDef> Penyelenggara </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.organizerId}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="sellerName">
+                                    <th mat-header-cell *matHeaderCellDef> Penjual </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.sellerId}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="initialPrice">
+                                    <th mat-header-cell *matHeaderCellDef> Harga Awal </th>
+                                    <td mat-cell *matCellDef="let element"> Rp {{element.initialPrice | number : '1.2-2'}}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="collateralQuantity">
+                                    <th mat-header-cell *matHeaderCellDef> Jaminan </th>
+                                    <td mat-cell *matCellDef="let element"> Rp {{element.collateralQuantity| number : '1.2-2' }}
+                                    </td>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="action">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                                    <td mat-cell *matCellDef="let row">
+                                        <button class="btn btn-sm btn-primary m-1" type="button"
+                                            routerLink="/lot-lelang/detail/{{row.id}}">Detail</button>
+                                        <!-- <button class="btn btn-sm btn-success m-1" type="button"
+                                            (click)="lelsold(row.id)">TERJUAL</button> -->
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                <!-- Row shown when there is no matching data. -->
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

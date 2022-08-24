@@ -1,0 +1,89 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-6 d-flex align-items-center">
+                                    <h1 class="mb-0">Data Akun Penjual</h1>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <button class="btn btn-outline-success btn-sm m-1"
+                                        routerLink="/akun-penjual/tambah">Tambah</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <mat-form-field appearance="standard">
+                                <mat-label>Filter</mat-label>
+                                <input matInput (keyup)="applyFilter($event)" autocomplete="off" #input>
+                                <mat-icon matSuffix>search</mat-icon>
+                            </mat-form-field>
+
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+                                <!-- nanti ini diganti nomor aja -->
+                                <ng-container matColumnDef="no">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No </th>
+                                    <td mat-cell *matCellDef="let element; let i = index">
+                                        {{i+1}}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="nama">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nama </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.firstName}}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="username">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.username}}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="email">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="action">
+                                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button class="btn m-2 btn-warning " type="button"
+                                            routerLink="/akun-penjual/edit/{{element.id}}">Edit</button>
+                                        <button class="btn m-2 btn-danger" type="button"
+                                            (click)="deleteSeller(element.id)">Delete</button>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                <!-- Row shown when there is no matching data. -->
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users">
+                            </mat-paginator>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

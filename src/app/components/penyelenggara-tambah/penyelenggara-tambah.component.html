@@ -1,0 +1,80 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h1>Tambah Data Penyelenggara</h1>
+                        </div>
+                        <div class="container">
+                            <form [formGroup]="createOrganizerForm" novalidate (ngSubmit)="createOrganizer()">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama </label>
+                                    <input type="text" class="form-control" formControlName="name" autocomplete="off">
+                                </div>
+                                <div *ngIf="createOrganizerForm.controls['name'].invalid && createOrganizerForm.controls['name'].touched" class="alert alert-danger">
+                                    <div *ngIf="createOrganizerForm.controls['name'].errors?.required">
+                                   Organizer Name is required.
+                                   </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Alamat </label>
+                                    <input type="text" class="form-control" autocomplete="off"
+                                        formControlName="address">
+                                </div>
+                                <div *ngIf="createOrganizerForm.controls['address'].invalid && createOrganizerForm.controls['address'].touched" class="alert alert-danger">
+                                    <div *ngIf="createOrganizerForm.controls['address'].errors?.required">
+                                        Organizer Name is required.
+                                   </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">No Telepon</label>
+                                            <input type="text" class="form-control" autocomplete="off"
+                                                formControlName="phoneNum">
+                                        </div>
+                                        <div *ngIf="createOrganizerForm.controls['phoneNum'].invalid && createOrganizerForm.controls['phoneNum'].touched" class="alert alert-danger">
+                                            <div *ngIf="createOrganizerForm.controls['phoneNum'].errors?.required">
+                                                Organizer Phone Number is required.
+                                           </div>
+                                           <div *ngIf="createOrganizerForm.controls['phoneNum'].errors?.['pattern'] || createOrganizerForm.controls['phoneNum'].errors?.['minlength'] || createOrganizerForm.controls['phoneNum'].errors?.['maxlength']">
+                                            Organizer Phone Number must be valid Phone number value.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">No Fax</label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    formControlName="fax">
+                                            </div>
+                                            <div *ngIf="createOrganizerForm.controls['fax'].invalid && createOrganizerForm.controls['fax'].touched" class="alert alert-danger">
+                                                <div *ngIf="createOrganizerForm.controls['fax'].errors?.required">
+                                                    Organizer fax is required.
+                                               </div>
+                                               <div *ngIf="createOrganizerForm.controls['fax'].errors?.['pattern'] || createOrganizerForm.controls['fax'].errors?.['minlength'] || createOrganizerForm.controls['fax'].errors?.['maxlength']">
+                                                Organizer fax must be valid fax value.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-sm w-100">Simpan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

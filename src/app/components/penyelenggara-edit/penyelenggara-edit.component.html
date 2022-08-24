@@ -1,0 +1,83 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h1>Edit Data Penyelenggara {{curorg.name}}</h1>
+                        </div>
+                        <div class="container">
+                            <form [formGroup]="editOrganizer" (ngSubmit)="updateOrganizer()">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama </label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name"
+                                        autocomplete="off" [(ngModel)]="editOrganizerForm.name" name="NAME">
+                                </div>
+                                <div *ngIf="editOrganizer.controls['name'].invalid && editOrganizer.controls['name'].touched" class="alert alert-danger">
+                                    <div *ngIf="editOrganizer.controls['name'].errors?.required">
+                                   Organizer Name is required.
+                                   </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Alamat </label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="address"
+                                        autocomplete="off" [(ngModel)]="editOrganizerForm.address" name="address">
+                                </div>
+                                <div *ngIf="editOrganizer.controls['address'].invalid && editOrganizer.controls['address'].touched" class="alert alert-danger">
+                                    <div *ngIf="editOrganizer.controls['address'].errors?.required">
+                                   Organizer Address is required.
+                                   </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">No Telepon</label>
+                                            <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="phoneNum"
+                                                autocomplete="off" [(ngModel)]="editOrganizerForm.phoneNum"
+                                                name="phoneNum">
+                                        </div>
+                                        <div *ngIf="editOrganizer.controls['phoneNum'].invalid && editOrganizer.controls['phoneNum'].touched" class="alert alert-danger">
+                                            <div *ngIf="editOrganizer.controls['phoneNum'].errors?.required">
+                                                Organizer Phone Number is required.
+                                           </div>
+                                           <div *ngIf="editOrganizer.controls['phoneNum'].errors?.['pattern'] || editOrganizer.controls['phoneNum'].errors?.['minlength'] || editOrganizer.controls['phoneNum'].errors?.['maxlength']">
+                                            Organizer Phone Number must be valid Phone number value.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">No Fax</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="fax"
+                                                    autocomplete="off" [(ngModel)]="editOrganizerForm.fax" name="fax">
+                                            </div>
+                                            <div *ngIf="editOrganizer.controls['fax'].invalid && editOrganizer.controls['fax'].touched" class="alert alert-danger">
+                                                <div *ngIf="editOrganizer.controls['fax'].errors?.required">
+                                                    Organizer fax is required.
+                                               </div>
+                                               <div *ngIf="editOrganizer.controls['fax'].errors?.['pattern'] || editOrganizer.controls['fax'].errors?.['minlength'] || editOrganizer.controls['fax'].errors?.['maxlength']">
+                                                Organizer fax must be valid fax value.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-sm w-100"
+                                    >Simpan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

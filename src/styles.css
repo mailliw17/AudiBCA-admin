@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("assets/css/nucleo-icons.css");
+@import url("assets/css/nucleo-svg.css");
+@import url("assets/css/argon-dashboard.css");
+@import url("assets/css/jquery.dataTables.css");
+/* @import url("assets/css/bootstrap.min.css"); */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

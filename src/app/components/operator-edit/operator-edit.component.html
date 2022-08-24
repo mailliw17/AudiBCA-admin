@@ -1,0 +1,119 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h1>Edit Akun Operator</h1>
+                        </div>
+                        <div class="container">
+                            <form [formGroup]="editOperator" (ngSubmit)="updateOperator()">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Nama Depan</label>
+                                            <input type="text" class="form-control" autocomplete="off" formControlName="firstName"
+                                                [(ngModel)]="editOperatorForm.firstName" name="firstName">
+                                        </div>
+                                        <div *ngIf="editOperator.controls['firstName'].invalid && editOperator.controls['firstName'].touched" class="alert alert-danger">
+                                            <div *ngIf="editOperator.controls['firstName'].errors?.required">
+                                           Operator First Name is required.
+                                           </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Nama Belakang</label>
+                                            <input type="text" class="form-control" autocomplete="off" formControlName="lastName"
+                                                [(ngModel)]="editOperatorForm.lastName" name="lastName">
+                                        </div>
+                                        <div *ngIf="editOperator.controls['lastName'].invalid && editOperator.controls['lastName'].touched" class="alert alert-danger">
+                                            <div *ngIf="editOperator.controls['lastName'].errors?.required">
+                                           Operator Last Name is required.
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Email</label>
+                                            <input type="email" class="form-control" autocomplete="off"  formControlName="email"
+                                                [(ngModel)]="editOperatorForm.email" name="email">
+                                        </div>
+                                        <div *ngIf="editOperator.controls['email'].invalid && editOperator.controls['email'].touched" class="alert alert-danger">
+                                            <div *ngIf="editOperator.controls['email'].errors?.required">
+                                           Operator E-mail is required.
+                                           </div>
+                                           <div *ngIf="editOperator.controls['email'].errors?.['pattern']">
+                                            Operator E-mail must be valid.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Username</label>
+                                            <input type="text" class="form-control" autocomplete="off" formControlName="username"
+                                                [(ngModel)]="editOperatorForm.username" name="username">
+                                        </div>
+                                        <div *ngIf="editOperator.controls['username'].invalid && editOperator.controls['username'].touched" class="alert alert-danger">
+                                            <div *ngIf="editOperator.controls['username'].errors?.required">
+                                           Operator Username is required.
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">No HP</label>
+                                            <input type="text" class="form-control" autocomplete="off"  formControlName="phoneNum"
+                                                [(ngModel)]="editOperatorForm.phoneNum" name="phoneNum">
+                                        </div>
+                                        <div *ngIf="editOperator.controls['phoneNum'].invalid && editOperator.controls['phoneNum'].touched" class="alert alert-danger">
+                                            <div *ngIf="editOperator.controls['phoneNum'].errors?.required">
+                                                Operator Phone Number is required.
+                                           </div>
+                                           <div *ngIf="editOperator.controls['phoneNum'].errors?.['pattern'] || editOperator.controls['phoneNum'].errors?.['minlength'] || editOperator.controls['phoneNum'].errors?.['maxlength']">
+                                            Operator Phone Number must be valid Phone number value.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" autocomplete="off" formControlName="dateOb"
+                                                [(ngModel)]="editOperatorForm.dateOb" name="dateOb">
+                                        </div>
+                                        <div *ngIf="editOperator.controls['dateOb'].invalid && editOperator.controls['dateOb'].touched" class="alert alert-danger">
+                                            <div *ngIf="editOperator.controls['dateOb'].errors?.required">
+                                           Operator Date of Birth is required.
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-sm w-100"
+                                       >Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

@@ -1,0 +1,48 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h1>Edit FAQ {{curfaq.question}}</h1>
+                        </div>
+                        <div class="container">
+                            <form [formGroup]="FAQedit" novalidate (ngSubmit)="updateFAQ(faqform)" #faqform="ngForm">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Question</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="faqq"
+                                        [(ngModel)]="curfaq.question" name="faqq" #faqq>
+                                </div>
+                                <div *ngIf="FAQedit.controls['faqq'].invalid && FAQedit.controls['faqq'].touched" class="alert alert-danger">
+                                    <div *ngIf="FAQedit.controls['faqq'].errors?.required">
+                                   FAQ Question is required.
+                                   </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Answer</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" formControlName="faqa"
+                                        [(ngModel)]="curfaq.answer" name="faqa" #faqa></textarea>
+                                </div>
+                                <div *ngIf="FAQedit.controls['faqa'].invalid && FAQedit.controls['faqa'].touched" class="alert alert-danger">
+                                    <div *ngIf="FAQedit.controls['faqa'].errors?.required">
+                                   FAQ Answer is required.
+                                   </div>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary btn-sm w-100"
+                                   >Simpan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

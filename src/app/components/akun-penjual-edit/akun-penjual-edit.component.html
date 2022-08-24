@@ -1,0 +1,119 @@
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h1>Edit Akun Penjual</h1>
+                        </div>
+                        <div class="container">
+                            <form [formGroup]="editSellerAccountForm" (ngSubmit)="updateOperator()">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Nama Depan</label>
+                                            <input type="text" class="form-control" autocomplete="off" formControlName="firstName"
+                                                [(ngModel)]="editSellerForm.firstName" name="firstName">
+                                        </div>
+                                        <div *ngIf="editSellerAccountForm.controls['firstName'].invalid && editSellerAccountForm.controls['firstName'].touched" class="alert alert-danger">
+                                            <div *ngIf="editSellerAccountForm.controls['firstName'].errors?.required">
+                                                Seller First name is required.
+                                           </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Nama Belakang</label>
+                                            <input type="text" class="form-control" autocomplete="off" formControlName="lastName"
+                                                [(ngModel)]="editSellerForm.lastName" name="lastName">
+                                        </div>
+                                        <div *ngIf="editSellerAccountForm.controls['lastName'].invalid && editSellerAccountForm.controls['lastName'].touched" class="alert alert-danger">
+                                            <div *ngIf="editSellerAccountForm.controls['lastName'].errors?.required">
+                                                Seller First name is required.
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Email</label>
+                                            <input type="email" class="form-control" autocomplete="off" formControlName="email"
+                                                [(ngModel)]="editSellerForm.email" name="email">
+                                        </div>
+                                        <div *ngIf="editSellerAccountForm.controls['email'].invalid && editSellerAccountForm.controls['email'].touched" class="alert alert-danger">
+                                            <div *ngIf="editSellerAccountForm.controls['email'].errors?.required">
+                                                Seller E-mail is required.
+                                           </div>
+                                           <div *ngIf="editSellerAccountForm.controls['email'].errors?.['pattern']">
+                                            Seller E-mail must be valid.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Username</label>
+                                            <input type="text" class="form-control" autocomplete="off"  formControlName="username"
+                                                [(ngModel)]="editSellerForm.username" name="username">
+                                        </div>
+                                        <div *ngIf="editSellerAccountForm.controls['username'].invalid && editSellerAccountForm.controls['username'].touched" class="alert alert-danger">
+                                            <div *ngIf="editSellerAccountForm.controls['username'].errors?.required">
+                                                Seller Username is required.
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">No HP</label>
+                                            <input type="text" class="form-control" autocomplete="off" formControlName="phoneNum"
+                                                [(ngModel)]="editSellerForm.phoneNum" name="phoneNum">
+                                        </div>
+                                        <div *ngIf="editSellerAccountForm.controls['phoneNum'].invalid && editSellerAccountForm.controls['phoneNum'].touched" class="alert alert-danger">
+                                            <div *ngIf="editSellerAccountForm.controls['phoneNum'].errors?.required">
+                                                Seller Phone Number is required.
+                                           </div>
+                                           <div *ngIf="editSellerAccountForm.controls['phoneNum'].errors?.['pattern'] || editSellerAccountForm.controls['phoneNum'].errors?.['minlength'] || editSellerAccountForm.controls['phoneNum'].errors?.['maxlength']">
+                                            Seller Phone Number must be valid Phone number value.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" autocomplete="off" formControlName="dateOb"
+                                                [(ngModel)]="editSellerForm.dateOb" name="dateOb">
+                                        </div>
+                                        <div *ngIf="editSellerAccountForm.controls['dateOb'].invalid && editSellerAccountForm.controls['dateOb'].touched" class="alert alert-danger">
+                                            <div *ngIf="editSellerAccountForm.controls['dateOb'].errors?.required">
+                                                Seller Date of Birth is required.
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-sm w-100"
+                                       >Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
