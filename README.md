@@ -6,7 +6,7 @@
 
 ## DO THIS FIRST !!
 
-- Type `git clone https://github.com/mailliw17/frontend-lelang-admin.git`
+- Type `git clone https://github.com/mailliw17/AudiBCA-admin.git`
 - Type `git branch`
   > Note: MAKE SURE ONLY MASTER BRANCH
 - Type `npm install`
